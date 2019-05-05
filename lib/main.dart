@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'dart:io';
 import 'dart:convert';
 
-import './ItemTag.dart';
-import './Item.dart';
+import 'item.dart';
+import 'item_tag.dart';
 
 void main() => runApp(MyApp());
 
@@ -14,9 +14,9 @@ class MyApp extends StatelessWidget {
   //TODO:Finish this json  bullshit
   MyApp(){
     String file = File('test.txt').readAsStringSync();
-    Map fileAsJson = json.decode(file);
+    Map fileAsJson = jsonDecode(file);
 
-    masterItemSet = fileAsJson["Items"];
+    masterItemSet = fileAsJson["items"];
   }
 
   @override

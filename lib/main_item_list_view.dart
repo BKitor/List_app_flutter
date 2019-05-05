@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
-import './ItemTag.dart';
+import 'item_tag.dart';
 
-class MainItemListView extends StatefulWidget{
+class MainItemListView extends StatefulWidget {
   @override
   State<StatefulWidget> createState() {
     // TODO: implement createState
@@ -10,7 +10,7 @@ class MainItemListView extends StatefulWidget{
   }
 }
 
-class _MainItemListViewState extends State<MainItemListView>{
+class _MainItemListViewState extends State<MainItemListView> {
   List<ItemTag> lists;
 
   @override
@@ -24,24 +24,22 @@ class _MainItemListViewState extends State<MainItemListView>{
     );
   }
 
-  Widget _buildMainListViewRow(ItemList){
-    
-  }
+  Widget _buildMainListViewRow(ItemList) {}
 
-  Widget _buildFinalRow(){
+  Widget _buildFinalRow() {}
 
-  }
-
-  Widget _buildMainListView(){
+  Widget _buildMainListView() {
     return ListView.builder(
-      itemBuilder: (context, int i){
-        if(i.isOdd){
+      itemBuilder: (context, int i) {
+        if (i.isOdd) {
           return Divider();
         }
-        final int index = i ~/2;
-        return index<lists.length?_buildMainListViewRow(lists[index]):_buildFinalRow();
+        final int index = i ~/ 2;
+        return index < lists.length
+            ? _buildMainListViewRow(lists[index])
+            : _buildFinalRow();
       },
-      itemCount: (lists.length*2)+1,
+      itemCount: (lists.length * 2) + 1,
     );
   }
 }
