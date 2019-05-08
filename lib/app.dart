@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import './model/item.dart';
 import './model/item_tag.dart';
 import './util/interal_file_io.dart';
+import './widgets/homepage.dart';
+import './model/item_tag.dart';
 
 enum LoadingState { DONE, LOADING, WAITING, ERROR }
 
@@ -42,40 +44,37 @@ class _AppState extends State<App> {
   }
 
   //TODO:Eventualy replace test.json with a webserver
-  _AppState() {
+  _AppState() {}
+
+  @override
+  void initState() {
+    super.initState();
     _loadMasterList();
     print('[app]$widget.masterItemList');
+    widget.masterItemTagsSet
+        .add(ItemTag(DateTime.now(), DateTime.now(), 'test', {}, []));
+    widget.masterItemTagsSet
+        .add(ItemTag(DateTime.now(), DateTime.now(), 'test2', {}, []));
   }
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: Scaffold(
-        appBar: AppBar(
-          title: Text("Oh SHIT, It works!"),
-        ),
-        body: Center(
-          child: _loadMainWidget(),
-        ),
-      ),
+      title: "List app",
+      home: _loadMainWidget(),
     );
   }
 
   Widget _loadMainWidget() {
     switch (_loadingState) {
       case LoadingState.DONE:
-        return Column(
-          children: <Widget>[
-            Text('${widget.masterItemList}'),
-            Text('${widget.masterItemTagsSet}')
-          ],
-        );
+        return Homepage(widget.masterItemTagsSet);
       case LoadingState.ERROR:
         return Text('something went kinda wrong');
       case LoadingState.LOADING:
-        return CircularProgressIndicator();
+        return Center(child: CircularProgressIndicator());
       default:
-        return Text('Something went horiblu wrong');
+        return Text('Something went horibly wrong');
     }
   }
   // void _intiJsonFileForTesting() async {

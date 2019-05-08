@@ -17,4 +17,10 @@ class ItemTag {
       _$ItemTagFromJson(json);
 
   Map<String, dynamic> toJson() => _$ItemTagToJson(this);
+
+  @override
+  String toString() {
+    // TODO: implement toString
+    return '$name : $created : $items';
+  }
 }
