@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../item_tag.dart';
+import '../model/item_tag.dart';
 
 class MainItemListView extends StatefulWidget {
   @override

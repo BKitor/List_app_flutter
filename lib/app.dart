@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
-import 'dart:io';
-import 'dart:convert';
 
-import './item.dart';
-import './item_tag.dart';
-import './utility/interal_file_io.dart';
+import './model/item.dart';
+import './model/item_tag.dart';
+import './util/interal_file_io.dart';
 
 enum LoadingState { DONE, LOADING, WAITING, ERROR }
 
+//TODO: this file is a hot mess, but works, clean it later
 class App extends StatefulWidget {
   final List<Item> masterItemList = [];
   final Set<ItemTag> masterItemTagsSet = {};
@@ -30,7 +29,7 @@ class _AppState extends State<App> {
       setState(() {
         _loadingState = LoadingState.DONE;
         widget.masterItemList.addAll(l);
-        l.forEach((i)=>widget.masterItemTagsSet.addAll(i.tags));
+        l.forEach((i) => widget.masterItemTagsSet.addAll(i.tags));
         _isLoading = false;
       });
     } catch (e) {
@@ -62,7 +61,7 @@ class _AppState extends State<App> {
     );
   }
 
-  Widget _loadMainWidget(){
+  Widget _loadMainWidget() {
     switch (_loadingState) {
       case LoadingState.DONE:
         return Column(
@@ -77,7 +76,6 @@ class _AppState extends State<App> {
         return CircularProgressIndicator();
       default:
         return Text('Something went horiblu wrong');
-
     }
   }
   // void _intiJsonFileForTesting() async {

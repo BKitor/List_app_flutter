@@ -2,7 +2,7 @@ import 'dart:io';
 import 'dart:convert';
 import 'package:path_provider/path_provider.dart';
 
-import '../item.dart';
+import '../model/item.dart';
 
 Future<String> get _getLocalPath async {
   final directory = await getApplicationDocumentsDirectory();
