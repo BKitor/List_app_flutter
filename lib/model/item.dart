@@ -7,15 +7,20 @@ part 'item.g.dart';
 class Item {
   final String name;
   final DateTime dateCreated;
-  final Set<ItemTag> tags;
+  final String id;
 
-  Item(this.name, this.dateCreated, this.tags);
+  Item(this.name, this.dateCreated, this.id);
+
+  factory Item.newItem(String name) {
+    DateTime dateCreated = DateTime.now();
+    return Item(name, dateCreated, name + dateCreated.toString());
+  }
 
   factory Item.fromJson(Map<String, dynamic> json) => _$ItemFromJson(json);
 
   Map<String, dynamic> toJson() => _$ItemToJson(this);
 
-  String toString(){
-    return "$name; $dateCreated; $tags";
+  String toString() {
+    return "Item: $name; $dateCreated";
   }
 }

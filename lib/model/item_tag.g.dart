@@ -8,27 +8,19 @@ part of 'item_tag.dart';
 
 ItemTag _$ItemTagFromJson(Map<String, dynamic> json) {
   return ItemTag(
-      json['created'] == null
+      json['dateCreated'] == null
           ? null
-          : DateTime.parse(json['created'] as String),
-      json['lastEdited'] == null
+          : DateTime.parse(json['dateCreated'] as String),
+      json['dateLastEdited'] == null
           ? null
-          : DateTime.parse(json['lastEdited'] as String),
+          : DateTime.parse(json['dateLastEdited'] as String),
       json['name'] as String,
-      (json['tags'] as List)
-          ?.map((e) =>
-              e == null ? null : ItemTag.fromJson(e as Map<String, dynamic>))
-          ?.toSet(),
-      (json['items'] as List)
-          ?.map((e) =>
-              e == null ? null : Item.fromJson(e as Map<String, dynamic>))
-          ?.toList());
+      json['id'] as String);
 }
 
 Map<String, dynamic> _$ItemTagToJson(ItemTag instance) => <String, dynamic>{
-      'created': instance.created?.toIso8601String(),
-      'lastEdited': instance.lastEdited?.toIso8601String(),
+      'dateCreated': instance.dateCreated?.toIso8601String(),
+      'dateLastEdited': instance.dateLastEdited?.toIso8601String(),
       'name': instance.name,
-      'tags': instance.tags?.toList(),
-      'items': instance.items
+      'id': instance.id
     };

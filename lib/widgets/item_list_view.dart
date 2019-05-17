@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import '../model/item_tag.dart';
 
-class ListEditView extends StatefulWidget{
-  
+class ItemListView extends StatefulWidget {
+  final ItemTag tag;
+  ItemListView(this.tag);
+
   @override
   State<StatefulWidget> createState() {
     // TODO: implement createState
@@ -9,7 +12,7 @@ class ListEditView extends StatefulWidget{
   }
 }
 
-class _ListEditViewState extends State<ListEditView>{
+class _ListEditViewState extends State<ItemListView> {
   @override
   Widget build(BuildContext context) {
     // TODO: implement build

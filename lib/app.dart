@@ -8,7 +8,6 @@ import './model/item_tag.dart';
 
 enum LoadingState { DONE, LOADING, WAITING, ERROR }
 
-//TODO: this file is a hot mess, but works, clean it later
 class App extends StatefulWidget {
   final List<Item> masterItemList = [];
   final Set<ItemTag> masterItemTagsSet = {};
@@ -24,37 +23,13 @@ class _AppState extends State<App> {
   LoadingState _loadingState = LoadingState.LOADING;
   bool _isLoading = false;
 
-  _loadMasterList() async {
-    _isLoading = true;
-    try {
-      List<Item> l = await fetchMasterItemList();
-      setState(() {
-        _loadingState = LoadingState.DONE;
-        widget.masterItemList.addAll(l);
-        l.forEach((i) => widget.masterItemTagsSet.addAll(i.tags));
-        _isLoading = false;
-      });
-    } catch (e) {
-      _isLoading = false;
-      print("Couldn't fetch masterItemList");
-      setState(() {
-        _loadingState = LoadingState.ERROR;
-      });
-    }
-  }
-
   //TODO:Eventualy replace test.json with a webserver
   _AppState() {}
 
   @override
   void initState() {
     super.initState();
-    _loadMasterList();
-    print('[app]$widget.masterItemList');
-    widget.masterItemTagsSet
-        .add(ItemTag(DateTime.now(), DateTime.now(), 'test', {}, []));
-    widget.masterItemTagsSet
-        .add(ItemTag(DateTime.now(), DateTime.now(), 'test2', {}, []));
+
   }
 
   @override
@@ -77,15 +52,10 @@ class _AppState extends State<App> {
         return Text('Something went horibly wrong');
     }
   }
-  // void _intiJsonFileForTesting() async {
-  //   List<Item> items = [];
-  //   for (int i = 0; i < 5; i++) {
-  //     items.add(Item('TestItem$i', DateTime.now(), Set()));
-  //   }
+}
 
-  //   String encodedSet = jsonEncode(items);
-
-  //   await writeData(encodedSet);
-  //   print(await readData());
-  // }
+class LoadJsonFromString{
+  static Map<String, dynamic> load(String jsonStr){
+    
+  }
 }

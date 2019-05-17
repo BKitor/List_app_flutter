@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import './item_list_view.dart';
 import '../model/item.dart';
 import '../model/item_tag.dart';
 
@@ -17,8 +18,6 @@ class _MainItemListViewState extends State<MainItemListView> {
   @override
   Widget build(BuildContext context) {
     // TODO: implement homepage
-    print('[main_item_list_view]${widget.lists}');
-    print('${widget.lists.length + 1}');
     return _buildMainListView();
   }
 
@@ -37,15 +36,20 @@ class _MainItemListViewState extends State<MainItemListView> {
   Widget _buildMainListViewRow(ItemTag i) {
     return ListTile(
       title: Text(i.name),
-      subtitle: Text(i.lastEdited.toIso8601String()),
-      onTap: () {},
+      subtitle: Text(i.dateLastEdited.toIso8601String()),
+      onTap: () {
+        Navigator.push(context, MaterialPageRoute(builder: (context)=>ItemListView(i)));
+      },
     );
   }
 
   Widget _buildFinalRow() {
     return ListTile(
       title: Text("New List"),
-      onTap: () {},
+      trailing: Icon(Icons.add),
+      onTap: () {
+        
+      },
     );
   }
 }

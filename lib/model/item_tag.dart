@@ -5,13 +5,17 @@ part 'item_tag.g.dart';
 
 @JsonSerializable()
 class ItemTag {
-  final DateTime created;
-  final DateTime lastEdited;
+  final DateTime dateCreated;
+  final DateTime dateLastEdited;
   final String name;
-  final Set<ItemTag> tags;
-  final List<Item> items;
+  final String id;
 
-  ItemTag(this.created, this.lastEdited, this.name, this.tags, this.items);
+  ItemTag(this.dateCreated, this.dateLastEdited, this.name, this.id);
+
+  factory ItemTag.newTag(String name){
+    DateTime dateCreated = DateTime.now();
+    return ItemTag(dateCreated, dateCreated, name, name+dateCreated.toString());
+  }
 
   factory ItemTag.fromJson(Map<String, dynamic> json) =>
       _$ItemTagFromJson(json);
@@ -21,6 +25,6 @@ class ItemTag {
   @override
   String toString() {
     // TODO: implement toString
-    return '$name : $created : $items';
+    return 'Tag: $name : $dateCreated ';
   }
 }
