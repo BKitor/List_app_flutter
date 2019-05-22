@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'dart:io';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:list_app/model/app_data.dart';
 
 import 'package:list_app/model/relation_str.dart';
 import 'package:list_app/app.dart';
@@ -27,4 +28,16 @@ void main() {
     print(testStr);
 
   });
+
+  // test("Init app_data",(){
+  //   AppData appData = AppData(File('./test/test2.json').readAsStringSync());
+
+  //   print(appData.masterItemSet);
+  //   print(appData.masterItemTagSet);
+  //   print(appData.masterRelationMap);
+    
+  //   expect('', '');
+  // });
+
+
 }
